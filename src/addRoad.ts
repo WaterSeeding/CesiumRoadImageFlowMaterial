@@ -1,5 +1,5 @@
 import * as Cesium from "cesium";
-import setMaterial from './setMaterial';
+import setMaterial from "./setMaterial";
 
 const addRoad = (viewer: Cesium.Viewer, url: string) => {
   const resource = Cesium.Resource.fetch({ url: url });
@@ -24,18 +24,22 @@ const addRoad = (viewer: Cesium.Viewer, url: string) => {
           instance.push(
             new Cesium.GeometryInstance({
               geometry: geometry!,
-            }),
+            })
           );
         });
       });
 
-      const material = setMaterial('./static/img/image.png');
+      const material = setMaterial("./static/img/image.png");
+
       const appearance = new Cesium.PolylineMaterialAppearance({
-        material: material,
+        // material: Cesium.Material.fromType("Color", {
+        //   color: new Cesium.Color(0.0, 1.0, 1.0, 1.0),
+        // }),
+        material: material
       });
       const primitive = new Cesium.Primitive({
         geometryInstances: instance,
-        appearance,
+        appearance: appearance,
         asynchronous: false,
       });
 

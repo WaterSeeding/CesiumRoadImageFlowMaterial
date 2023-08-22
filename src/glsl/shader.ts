@@ -4,7 +4,7 @@ const shader = `
     vec2 st = materialInput.st;
     vec4 colorImage = texture(image, vec2(fract((st.s - speed * czm_frameNumber * 0.001)), st.t));
     material.alpha = colorImage.a;
-    material.diffuse = colorImage.rgb * 1.5 ;
+    material.diffuse = colorImage.rgb * 1.5;
     return material;
   }
 `
