@@ -140,10 +140,24 @@ czm_material czm_getMaterial(czm_materialInput materialInput) {
 
 ![Material](./md/4.png)
 
-1. 通过czm_getDefaultMaterial函数将材质参数materialInput，转化为czm_material材质
-2. 将材质参数materialInput赋值给st变量
-3. 然后，使用GLSL texture获取image图片的图像数据
-4. 最后将image图片的图像数据赋值给czm_material材质的alpha、diffuse，输出
+<br />
+
+material 这个变量是一个结构体，通过修改其材质因子即可实现材质修改。
+观察片元着色器代码中的主函数，其中有一句调用:
+
+```tsx
+czm_material material = czm_getMaterial(materialInput)
+```
+
+这一句便是对我们在 fabric 对象中写入的 glsl 代码的调用。
+最后输出，使用 material 结构的漫反射因子 + 自发光因子 + 透明度因子进行叠加，生成最终的颜色值。
+
+思路：
+
+1. 通过 czm_getDefaultMaterial 函数将材质参数 materialInput，转化为 czm_material 材质
+2. 将材质参数 materialInput 赋值给 st 变量
+3. 然后，使用 GLSL texture 获取 image 图片的图像数据
+4. 最后将 image 图片的图像数据赋值给 czm_material 材质的 alpha、diffuse，输出
 
 <br />
 
